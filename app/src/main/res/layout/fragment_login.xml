@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.technologies.mobileexercise.feature.login.LoginField"/>
+
+        <variable
+            name="viewModel"
+            type="com.technologies.mobileexercise.feature.login.LoginViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/login_cl_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/margin_small">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_til_username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_xxxlarge"
+            android:layout_marginEnd="@dimen/margin_medium"
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_username"
+                android:drawablePadding="@dimen/margin_small"
+                android:ellipsize="end"
+                android:hint="@string/hint_username"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:onTextChanged="@{(text,start,before,count) -> viewModel.onDataChange(text,LoginField.USERNAME)}"
+                android:selectAllOnFocus="true"
+                app:error="@{viewModel.formState.usernameError}" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_til_password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            app:hintEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_til_username"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_password"
+                android:drawablePadding="@dimen/margin_small"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                android:onTextChanged="@{(text,start,before,count) -> viewModel.onDataChange(text, LoginField.PASSWORD)}"
+                android:selectAllOnFocus="true"
+                app:error="@{viewModel.formState.passwordError}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/login_b_continue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginBottom="@dimen/margin_large"
+            android:enabled="@{viewModel.formState.dataValid}"
+            android:text="@string/action_login"
+            app:clickWithDebounce="@{() -> viewModel.login()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/login_til_password"
+            app:layout_constraintStart_toStartOf="@+id/login_til_password" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

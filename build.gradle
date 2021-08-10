@@ -1,0 +1,74 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        kotlin_version = '1.4.32'
+
+        gradle_tools = "4.1.3"
+        hilt_version = "2.35"
+        hilt_ext_version = "1.0.0-alpha03"
+        build_tools = '30.0.3'
+
+        navigation_version = '2.3.5'
+
+        application_id = 'com.technologies.mobileexercise'
+        compile_sdk = 30
+        target_sdk = 30
+        min_sdk = 23
+
+        version_name = '1'
+        version_code = 1
+
+        app_compat_version = "1.3.1"
+        recycler_view_version = "1.2.1"
+        android_material_version = "1.4.0-beta01"
+        core_ktx_version = "1.6.0"
+        constraint_layout_version = "2.0.4"
+        legacy_support_version = "1.0.0"
+        annotation_version = "1.2.0"
+        preference_version = "1.1.1"
+        datastore_version = "1.0.0-beta02"
+        retrofit_version = "2.9.0"
+        conscrypt_version = "2.4.0"
+        okhttp_version = "4.9.0"
+        lifecycle_version = "2.4.0-alpha02"
+        glide_version = '4.11.0'
+        coroutines_version = '1.3.9'
+        lottie_version = '3.4.4'
+        material_dialog_version = '3.3.0'
+        preference_version = '1.1.1'
+        multidex_version = '2.0.1'
+        room_version = '2.4.0-alpha04'
+        paging_version = '2.1.2'
+
+        mockk_version = '1.10.2'
+        junit_version = '4.13.1'
+        junit_ext_version = '1.1.2'
+        arch_core_testing = '1.1.1'
+    }
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${gradle_tools}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath 'com.google.gradle:osdetector-gradle-plugin:1.4.0'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
